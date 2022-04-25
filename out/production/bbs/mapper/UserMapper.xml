@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ncu.bbs.dao.UserMapper">
+  <resultMap id="BaseResultMap" type="com.ncu.bbs.bean.User">
+    <id column="u_id" jdbcType="INTEGER" property="uId" />
+    <result column="u_userid" jdbcType="VARCHAR" property="uUserid" />
+    <result column="u_password" jdbcType="VARCHAR" property="uPassword" />
+    <result column="u_nickname" jdbcType="VARCHAR" property="uNickname" />
+    <result column="u_sex" jdbcType="VARCHAR" property="uSex" />
+    <result column="u_name" jdbcType="VARCHAR" property="uName" />
+    <result column="u_email" jdbcType="VARCHAR" property="uEmail" />
+    <result column="u_intro" jdbcType="VARCHAR" property="uIntro" />
+    <result column="u_headpic" jdbcType="VARCHAR" property="uHeadpic" />
+    <result column="u_age" jdbcType="VARCHAR" property="uAge" />
+    <result column="u_workplace" jdbcType="VARCHAR" property="uWorkplace" />
+    <result column="u_workproperty" jdbcType="VARCHAR" property="uWorkproperty" />
+    <result column="u_issectioner" jdbcType="INTEGER" property="uIssectioner" />
+    <result column="u_points" jdbcType="INTEGER" property="uPoints" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    u_id, u_userid, u_password, u_nickname, u_sex, u_name, u_email, u_intro, u_headpic, 
+    u_age, u_workplace, u_workproperty, u_issectioner, u_points
+  </sql>
+  <select id="selectByExample" parameterType="com.ncu.bbs.bean.UserExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from t_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_user
+    where u_id = #{uId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_user
+    where u_id = #{uId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.ncu.bbs.bean.UserExample">
+    delete from t_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.ncu.bbs.bean.User">
+    insert into t_user (u_id, u_userid, u_password, 
+      u_nickname, u_sex, u_name, 
+      u_email, u_intro, u_headpic, 
+      u_age, u_workplace, u_workproperty, 
+      u_issectioner, u_points)
+    values (#{uId,jdbcType=INTEGER}, #{uUserid,jdbcType=VARCHAR}, #{uPassword,jdbcType=VARCHAR}, 
+      #{uNickname,jdbcType=VARCHAR}, #{uSex,jdbcType=VARCHAR}, #{uName,jdbcType=VARCHAR}, 
+      #{uEmail,jdbcType=VARCHAR}, #{uIntro,jdbcType=VARCHAR}, #{uHeadpic,jdbcType=VARCHAR}, 
+      #{uAge,jdbcType=VARCHAR}, #{uWorkplace,jdbcType=VARCHAR}, #{uWorkproperty,jdbcType=VARCHAR}, 
+      #{uIssectioner,jdbcType=INTEGER}, #{uPoints,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ncu.bbs.bean.User">
+    insert into t_user
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        u_id,
+      </if>
+      <if test="uUserid != null">
+        u_userid,
+      </if>
+      <if test="uPassword != null">
+        u_password,
+      </if>
+      <if test="uNickname != null">
+        u_nickname,
+      </if>
+      <if test="uSex != null">
+        u_sex,
+      </if>
+      <if test="uName != null">
+        u_name,
+      </if>
+      <if test="uEmail != null">
+        u_email,
+      </if>
+      <if test="uIntro != null">
+        u_intro,
+      </if>
+      <if test="uHeadpic != null">
+        u_headpic,
+      </if>
+      <if test="uAge != null">
+        u_age,
+      </if>
+      <if test="uWorkplace != null">
+        u_workplace,
+      </if>
+      <if test="uWorkproperty != null">
+        u_workproperty,
+      </if>
+      <if test="uIssectioner != null">
+        u_issectioner,
+      </if>
+      <if test="uPoints != null">
+        u_points,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="uId != null">
+        #{uId,jdbcType=INTEGER},
+      </if>
+      <if test="uUserid != null">
+        #{uUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null">
+        #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uNickname != null">
+        #{uNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="uSex != null">
+        #{uSex,jdbcType=VARCHAR},
+      </if>
+      <if test="uName != null">
+        #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uEmail != null">
+        #{uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="uIntro != null">
+        #{uIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="uHeadpic != null">
+        #{uHeadpic,jdbcType=VARCHAR},
+      </if>
+      <if test="uAge != null">
+        #{uAge,jdbcType=VARCHAR},
+      </if>
+      <if test="uWorkplace != null">
+        #{uWorkplace,jdbcType=VARCHAR},
+      </if>
+      <if test="uWorkproperty != null">
+        #{uWorkproperty,jdbcType=VARCHAR},
+      </if>
+      <if test="uIssectioner != null">
+        #{uIssectioner,jdbcType=INTEGER},
+      </if>
+      <if test="uPoints != null">
+        #{uPoints,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.ncu.bbs.bean.UserExample" resultType="java.lang.Long">
+    select count(*) from t_user
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update t_user
+    <set>
+      <if test="record.uId != null">
+        u_id = #{record.uId,jdbcType=INTEGER},
+      </if>
+      <if test="record.uUserid != null">
+        u_userid = #{record.uUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uPassword != null">
+        u_password = #{record.uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uNickname != null">
+        u_nickname = #{record.uNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uSex != null">
+        u_sex = #{record.uSex,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uName != null">
+        u_name = #{record.uName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uEmail != null">
+        u_email = #{record.uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uIntro != null">
+        u_intro = #{record.uIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uHeadpic != null">
+        u_headpic = #{record.uHeadpic,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uAge != null">
+        u_age = #{record.uAge,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uWorkplace != null">
+        u_workplace = #{record.uWorkplace,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uWorkproperty != null">
+        u_workproperty = #{record.uWorkproperty,jdbcType=VARCHAR},
+      </if>
+      <if test="record.uIssectioner != null">
+        u_issectioner = #{record.uIssectioner,jdbcType=INTEGER},
+      </if>
+      <if test="record.uPoints != null">
+        u_points = #{record.uPoints,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update t_user
+    set u_id = #{record.uId,jdbcType=INTEGER},
+      u_userid = #{record.uUserid,jdbcType=VARCHAR},
+      u_password = #{record.uPassword,jdbcType=VARCHAR},
+      u_nickname = #{record.uNickname,jdbcType=VARCHAR},
+      u_sex = #{record.uSex,jdbcType=VARCHAR},
+      u_name = #{record.uName,jdbcType=VARCHAR},
+      u_email = #{record.uEmail,jdbcType=VARCHAR},
+      u_intro = #{record.uIntro,jdbcType=VARCHAR},
+      u_headpic = #{record.uHeadpic,jdbcType=VARCHAR},
+      u_age = #{record.uAge,jdbcType=VARCHAR},
+      u_workplace = #{record.uWorkplace,jdbcType=VARCHAR},
+      u_workproperty = #{record.uWorkproperty,jdbcType=VARCHAR},
+      u_issectioner = #{record.uIssectioner,jdbcType=INTEGER},
+      u_points = #{record.uPoints,jdbcType=INTEGER}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ncu.bbs.bean.User">
+    update t_user
+    <set>
+      <if test="uUserid != null">
+        u_userid = #{uUserid,jdbcType=VARCHAR},
+      </if>
+      <if test="uPassword != null">
+        u_password = #{uPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="uNickname != null">
+        u_nickname = #{uNickname,jdbcType=VARCHAR},
+      </if>
+      <if test="uSex != null">
+        u_sex = #{uSex,jdbcType=VARCHAR},
+      </if>
+      <if test="uName != null">
+        u_name = #{uName,jdbcType=VARCHAR},
+      </if>
+      <if test="uEmail != null">
+        u_email = #{uEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="uIntro != null">
+        u_intro = #{uIntro,jdbcType=VARCHAR},
+      </if>
+      <if test="uHeadpic != null">
+        u_headpic = #{uHeadpic,jdbcType=VARCHAR},
+      </if>
+      <if test="uAge != null">
+        u_age = #{uAge,jdbcType=VARCHAR},
+      </if>
+      <if test="uWorkplace != null">
+        u_workplace = #{uWorkplace,jdbcType=VARCHAR},
+      </if>
+      <if test="uWorkproperty != null">
+        u_workproperty = #{uWorkproperty,jdbcType=VARCHAR},
+      </if>
+      <if test="uIssectioner != null">
+        u_issectioner = #{uIssectioner,jdbcType=INTEGER},
+      </if>
+      <if test="uPoints != null">
+        u_points = #{uPoints,jdbcType=INTEGER},
+      </if>
+    </set>
+    where u_id = #{uId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ncu.bbs.bean.User">
+    update t_user
+    set u_userid = #{uUserid,jdbcType=VARCHAR},
+      u_password = #{uPassword,jdbcType=VARCHAR},
+      u_nickname = #{uNickname,jdbcType=VARCHAR},
+      u_sex = #{uSex,jdbcType=VARCHAR},
+      u_name = #{uName,jdbcType=VARCHAR},
+      u_email = #{uEmail,jdbcType=VARCHAR},
+      u_intro = #{uIntro,jdbcType=VARCHAR},
+      u_headpic = #{uHeadpic,jdbcType=VARCHAR},
+      u_age = #{uAge,jdbcType=VARCHAR},
+      u_workplace = #{uWorkplace,jdbcType=VARCHAR},
+      u_workproperty = #{uWorkproperty,jdbcType=VARCHAR},
+      u_issectioner = #{uIssectioner,jdbcType=INTEGER},
+      u_points = #{uPoints,jdbcType=INTEGER}
+    where u_id = #{uId,jdbcType=INTEGER}
+  </update>
+</mapper>

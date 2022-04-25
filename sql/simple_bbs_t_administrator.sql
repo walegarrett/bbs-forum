@@ -1,0 +1,1 @@
+INSERT INTO simple_bbs.t_administrator (a_id, a_adminname, a_password, a_headpic, a_email) VALUES (1, 'admin', '123456', '123', '123');

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+    <!--1.启动Spring的容器     -->
+    <listener>
+        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+    </listener>
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>classpath:applicationContext.xml</param-value>
+    </context-param>
+    <!--    2.加载SpringMvc-->
+    <servlet>
+        <servlet-name>dispatcher</servlet-name>
+        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>dispatcher</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <!--配置字符过滤器-->
+    <filter>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+        <init-param>
+            <param-name>encoding</param-name>
+            <param-value>utf-8</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceRequestEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+        <init-param>
+            <param-name>forceRespondEncoding</param-name>
+            <param-value>true</param-value>
+        </init-param>
+    </filter>
+    <filter-mapping>
+        <filter-name>CharacterEncodingFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+
+<!--配置过滤器编码-->
+    <filter>
+        <filter-name>Set Encoding</filter-name>
+        <filter-class>com.ncu.bbs.wale.filter.SetEncodingFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>Set Encoding</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+<!--    &lt;!&ndash;    Restful风格，将post转为delete、put&ndash;&gt;-->
+<!--    <filter>-->
+<!--        <filter-name>HiddenHttpMethodFilter</filter-name>-->
+<!--        <filter-class>org.springframework.web.filter.HiddenHttpMethodFilter</filter-class>-->
+<!--    </filter>-->
+<!--    <filter-mapping>-->
+<!--        <filter-name>HiddenHttpMethodFilter</filter-name>-->
+<!--        <url-pattern>/*</url-pattern>-->
+<!--    </filter-mapping>-->
+
+    <welcome-file-list>
+        <welcome-file>index1.jsp</welcome-file>
+    </welcome-file-list>
+</web-app>

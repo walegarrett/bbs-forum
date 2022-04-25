@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/cache" xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
+    <!--       数据源、事务控制-->
+    <context:component-scan base-package="com.ncu.bbs">
+        <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
+    </context:component-scan>
+    <context:property-placeholder location="classpath:dbconfig.properties"/>
+    <bean id="pooledDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+        <property name="jdbcUrl" value="${jdbc.jdbcUrl}"/>
+        <property name="driverClass" value="${jdbc.driverClass}"/>
+        <property name="user" value="${jdbc.user}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+    <!--配置mybatis整合-->
+    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+        <!--        指定Mybatis全局配置文件的位置-->
+        <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="dataSource" ref="pooledDataSource"/>
+        <!--        指定mybatis mapper文件-->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
+    </bean>
+    <!--    配置扫描器，将mybatis接口的实现加入到ioc容器-->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.ncu.bbs.dao"/>
+    </bean>
+</beans>

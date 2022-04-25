@@ -1,0 +1,5 @@
+INSERT INTO simple_bbs.t_section (s_id, s_sectionname, s_description, s_banzhuid) VALUES (1, '新生版面', '所有想要了解南昌大学生活和学习的同学都可以进来浏览，有许多师哥师姐会为你答疑解惑哦。当然你也可以提出自己对新学校的看法，欢迎吐槽。', 82);
+INSERT INTO simple_bbs.t_section (s_id, s_sectionname, s_description, s_banzhuid) VALUES (3, '教师版面', '考试通教师考试版块为您提供教师招考公告，教师招聘信息，教师报考指南，教师考试辅导，教师职位介绍，教师成绩查询等资讯内容，更好进行报考规划；同时考试通教师版块为您提供各种精品与特惠课程，享受有效率的复习方式，更有名师大咖为您讲解知识考点，学习起来事半功倍', 82);
+INSERT INTO simple_bbs.t_section (s_id, s_sectionname, s_description, s_banzhuid) VALUES (4, '学习版面1', '在学习中，如果有好的学习方法，就可以让学习收到事半功倍的效果。学习知识，就如同在航海，在海中必须遵循航海中灯塔指引的正确航线前进，才会不触礁，才会顺利、安全地到达目的地。该版块，介绍的是学习方法，就如同航海的灯塔一样，起到指引方向的作用。所以，取名为“学海灯塔”比较形象和贴切，而且也比较文艺。', 63);
+INSERT INTO simple_bbs.t_section (s_id, s_sectionname, s_description, s_banzhuid) VALUES (5, '趣事版面-版主', '为顺应贴吧潮流，现已开设了新的版块 “趣事版块” 。此版块设立目的，是针对游戏内容以外的其他高质量话题进行评审，通过可予以加精。旨在增加吧内活跃度，拓展讨论宽度，吸引外吧吧友进驻为游戏知名度借势，增加吧友们业余的八卦娱乐和谈资。', 74);
+INSERT INTO simple_bbs.t_section (s_id, s_sectionname, s_description, s_banzhuid) VALUES (10, '老哥版块', '遇见了那么多人 我才知道我想要的是你只看楼主收藏回复   煖胸 小吧主12 遇见了那么多人 我才知道我想要的是你', 85);
