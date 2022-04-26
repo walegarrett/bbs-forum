@@ -33,7 +33,7 @@ Spring + Spring MVC + MyBatis
 
 ### 首页
 
-![image-20220425202606354](https://walegarrett-image-1304556108.cos.ap-chengdu.myqcloud.com/markdown_img/202204252026016.png)
+![image-20220426154128431](https://walegarrett-image-1304556108.cos.ap-chengdu.myqcloud.com/markdown_img/202204261541803.png)
 
 ### 版块
 

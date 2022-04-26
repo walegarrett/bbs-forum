@@ -1,5 +1,7 @@
 .idea
-
+out
+out/
+out/*
 target/
 target/*
 target
