@@ -30,7 +30,7 @@ public class FileUploadController {
         //使用fileupload组件完成文件上传
         //上传的位置
         String path=request.getSession().getServletContext().getRealPath("/uploads/");
-        path="E:\\IDEA\\IdeaProjects\\bbs\\upload\\images";
+        path="D:\\projects\\java\\bbs-forum\\upload\\images";
         //判断，该路径是否存在
         File file=new File(path);
         if(!file.exists()){
@@ -112,7 +112,7 @@ public class FileUploadController {
         HttpSession session1=request.getSession();
         int uid= (int) session1.getAttribute("userid");
         String path=request.getSession().getServletContext().getRealPath("/uploads/");
-        path="E:\\IDEA\\IdeaProjects\\bbs\\upload\\images";
+        path="D:\\projects\\java\\bbs-forum\\upload\\images";
         //判断，该路径是否存在
         File file=new File(path);
         if(!file.exists()){
