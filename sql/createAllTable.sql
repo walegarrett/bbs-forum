@@ -1,4 +1,5 @@
 create database simple_bbs;
+use simple_bbs;
 create table t_user (u_id int auto_increment primary key not null ,/*用户表（含版主）*/
                    u_userid varchar(255) not null,
                    u_password varchar(255) not null,

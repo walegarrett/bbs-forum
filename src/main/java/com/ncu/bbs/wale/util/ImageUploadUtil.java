@@ -72,7 +72,7 @@ public class ImageUploadUtil{
                         }
                         // 获得上传路径的绝对路径地址(/upload)-->
                         String realPath = request.getSession().getServletContext().getRealPath("/statics/images/" + DirectoryName);
-                        realPath="E:\\IDEA\\IdeaProjects\\bbs\\upload\\images";
+                        realPath="D:\\projects\\java\\bbs-forum\\upload\\images";
                         //输出上传的路径
                         System.out.println(realPath);
                         // 如果路径不存在，则创建该路径
